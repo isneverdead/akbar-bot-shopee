@@ -1,0 +1,33 @@
+{
+  "name": "akbar-bot-shopee",
+  "version": "1.0.0",
+  "description": "bot menggunakan selenium webdriver dan node js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node doe.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isneverdead/akbar-bot-shopee.git"
+  },
+  "author": "Fariz Akbar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/isneverdead/akbar-bot-shopee/issues"
+  },
+  "homepage": "https://github.com/isneverdead/akbar-bot-shopee#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chromedriver": "^80.0.1",
+    "ejs": "^3.0.2",
+    "ejs-lint": "^1.0.1",
+    "express": "^4.17.1",
+    "firebase": "^7.13.2",
+    "firebase-admin": "^8.10.0",
+    "firebaseui": "^4.5.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.2",
+    "selenium-webdriver": "^4.0.0-alpha.7"
+  }
+}
