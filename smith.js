@@ -53,15 +53,16 @@ const C_button_verif = "_2thXug"
 const IN_phone_number = "08567500965"
 const IN_kode_cata = ""
 const IN_kode_verif = ""
-app.post("/", (req, res)=>{
-  console.log(req.body)
-  res.send(200)
-})
+// app.post("/", (req, res)=>{
+//   console.log(req.body)
+//   console.log(req.body.body.newCommands.status)
+//   res.send(200)
+// })
 
 app.post("/", async(req, res) => {
-    var status = req.body.status
+    var status = req.body.newCommands.status
     console.log(req.body)
-    console.log("hasil : "+req.body.status)
+    console.log("hasil : "+req.body.newCommands.status)
     async function buildChrome() {
         driver = await new Builder().forBrowser("chrome").build()
     }
@@ -89,6 +90,15 @@ app.post("/", async(req, res) => {
           .findElement(By.name(N_phone_input))   
           .sendKeys(IN_phone_number)
     }
+    async function screenshot() {
+      await driver
+          .takeScreenshot()
+          .then(function(image, err) {
+            require("fs").writeFile("./views/img.png", image, "base64", function(err) {
+            console.log(err)
+        })
+      })
+    }
     if (status == "run") {
       console.log("machine is idle")
         buildChrome()
@@ -111,15 +121,22 @@ app.post("/", async(req, res) => {
       console.log("Driver Reset")
       await driver.close()
       driver = await new Builder().forBrowser("chrome").build()
+    } else if (status == "st") {
+      console.log("Driver Shutdown")
+      await driver.close()
+    } else if (status == "sc") {
+      console.log("Driver Screenshot")
+      screenshot()
     }
+    res.send(200)
 
     // console.log(status)
     // res.end("yes");
 })
 
 // app.use(express.bodyParser());
-app.post('/', function(req, res) {
-  console.log(req.body.status)
+app.get('/sc', function(req, res) {
+  res.sendFile(__dirname,'./views/img.png')
 })
 
 
