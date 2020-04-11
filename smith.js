@@ -53,9 +53,14 @@ const C_button_verif = "_2thXug"
 const IN_phone_number = "08567500965"
 const IN_kode_cata = ""
 const IN_kode_verif = ""
+app.post("/", (req, res)=>{
+  console.log(req.body)
+  res.send(200)
+})
 
 app.post("/", async(req, res) => {
     var status = req.body.status
+    console.log(req.body)
     console.log("hasil : "+req.body.status)
     async function buildChrome() {
         driver = await new Builder().forBrowser("chrome").build()
@@ -118,7 +123,7 @@ app.post('/', function(req, res) {
 })
 
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 4000
 app.listen(port, () => {
   console.log(`listening to port ${port} now...`)
 })
